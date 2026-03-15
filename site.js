@@ -13,9 +13,9 @@ const nextQuestionElement = document.querySelector('#nextQuestion')
 	// todo: create your "getNextQuestion" function
 	const getNextQuestion = async => { 
 	const url = 'https://opentdb.com/api.php?amount=1&category=21&difficulty=easy&type=multiple'
-	const json = JSON.parse(fetch(url))
-		.then(response => response.json())
-	const { question, correct_answer: correct, incorrect_answers: incorrect } = json.results[0]
+	const json = fetch(url)
+		.then(results => results.json())
+	const { question, correct_answer: correct, incorrect_answers: incorrect } = json.result[0]
 	const answers = shuffle([ ...incorrect, correct ])
 	return { question, answers, correct }
 	}
